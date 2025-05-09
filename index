@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>라이브 페이지</title>
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+    .video-container {
+      flex: 2;
+    }
+    .clock-container {
+      flex: 1;
+      font-size: 2rem;
+      padding-left: 20px;
+    }
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video
+      id="live-video"
+      class="video-js vjs-default-skin"
+      controls
+      autoplay
+      muted
+      preload="auto"
+      data-setup='{}'
+    >
+      <!-- 👇 여기에 실제 HLS 주소 입력하세요 -->
+      <!-- <source src="https://yourserver.com/stream.m3u8" type="application/x-mpegURL" /> -->
+      브라우저가 HLS 스트리밍을 지원하지 않습니다.
+    </video>
+  </div>
+
+  <div class="clock-container">
+    <div id="clock">00:00:00</div>
+  </div>
+
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const clock = document.getElementById('clock');
+      clock.textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock(); // 첫 실행
+  </script>
+</body>
+</html>
